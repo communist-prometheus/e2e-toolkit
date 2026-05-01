@@ -1,0 +1,24 @@
+{
+  "name": "@prometheus/e2e-toolkit",
+  "version": "0.1.0",
+  "private": false,
+  "type": "module",
+  "description": "Network-aware Playwright wrappers shared across Communist Prometheus repos. Tests import from this package, never from @playwright/test directly. No blind timeouts — every wait polls a checker AND watches in-flight requests; on a static site the wait returns on the first tick.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/communist-prometheus/e2e-toolkit.git"
+  },
+  "homepage": "https://github.com/communist-prometheus/e2e-toolkit#readme",
+  "bugs": {
+    "url": "https://github.com/communist-prometheus/e2e-toolkit/issues"
+  },
+  "keywords": ["playwright", "e2e", "testing", "network-aware", "no-timeouts"],
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "files": ["src"],
+  "peerDependencies": {
+    "@playwright/test": ">=1.40"
+  }
+}
