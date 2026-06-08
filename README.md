@@ -62,6 +62,16 @@ await waitForCondition(page, async () =>
 
 Drop-in replacements for `page.goto` / `loc.click()` / `loc.fill()` / `keyboard.press()`. Each finishes by waiting on the request graph.
 
+### `waitForUrl(page, pattern, options?)`
+
+Wait for the URL to match `pattern` AND for the request graph to settle. Use this instead of polling `page.url()` inside `waitForCondition` — that pattern races SPA pushState / Astro View Transitions and goes intermittently flaky. `waitForUrl` is layered on Playwright's navigation-event-driven `page.waitForURL`, then chains the toolkit's network-quiet check so the caller can keep asserting on a fully-settled page immediately after.
+
+```ts
+await click(page, enOption);
+await waitForUrl(page, /\/en\/manifest\/?$/);
+await expectVisible(page, page.locator('h1'));
+```
+
 ### Assertions
 
 `expectVisible` / `expectHidden` / `expectText` / `expectCount` / `expectMinCount` / `expectClass` / `expectAttribute` / `expectNotAttribute` / `expectValue`
