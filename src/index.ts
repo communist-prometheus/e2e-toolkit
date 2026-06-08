@@ -23,3 +23,4 @@ export {
   expectVisible,
 } from './expect'
 export { type WaitOptions, waitForCondition } from './wait-for'
+export { type UrlPattern, waitForUrl } from './wait-for-url'
