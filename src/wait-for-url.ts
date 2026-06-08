@@ -2,10 +2,7 @@ import type { Page } from '@playwright/test'
 import { type WaitOptions, waitForCondition } from './wait-for'
 
 /** Pattern accepted by Playwright's `page.waitForURL`. */
-export type UrlPattern =
-  | string
-  | RegExp
-  | ((url: URL) => boolean | Promise<boolean>)
+export type UrlPattern = string | RegExp | ((url: URL) => boolean)
 
 /**
  * Wait for the page URL to match `urlPattern` AND the request graph
