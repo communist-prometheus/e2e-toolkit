@@ -1,0 +1,9 @@
+version: 2
+updates:
+  # No lockfile in this repo (peer-deps only), so github-actions is the
+  # only ecosystem with anything to update. Keeps the SHA pins moving.
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 5

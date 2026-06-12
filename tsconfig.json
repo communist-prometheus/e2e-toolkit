@@ -12,7 +12,8 @@
     "skipLibCheck": true,
     "noEmit": true,
     "isolatedModules": true,
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true,
+    "types": ["node"]
   },
   "include": ["src/**/*"]
 }
