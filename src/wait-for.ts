@@ -1,3 +1,4 @@
+import process from 'node:process'
 import type { Page } from '@playwright/test'
 
 /** Options for {@link waitForCondition}. */
@@ -22,9 +23,19 @@ export interface WaitOptions {
   readonly pollMs?: number
 }
 
+/*
+ * The ceiling is a SAFETY NET, not a behaviour contract — healthy
+ * pages resolve in milliseconds regardless. On CI runners where the
+ * suite shares 4 vCPUs across parallel workers, genuinely-healthy
+ * cold paths (SW boot + clone) can exceed 10 s, so the net is
+ * env-tunable: set E2E_MAX_WAIT_MS in the workflow, leave local
+ * runs strict.
+ */
+const envMaxMs = Number(process.env.E2E_MAX_WAIT_MS ?? '')
+
 const DEFAULT: Required<WaitOptions> = {
   settleMs: 50,
-  maxMs: 10_000,
+  maxMs: Number.isFinite(envMaxMs) && envMaxMs > 0 ? envMaxMs : 10_000,
   pollMs: 25,
 }
 
